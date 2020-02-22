@@ -111,36 +111,24 @@ app.post('/api/getData/:id', async (req , res)=>{
     }
 })
 
-app.get('/api/getPerson/:id', async (req , res)=>{
+app.get('/api/getDescriptor', async (req , res)=>{
     try{
-        // console.log(req.body.data[0])
-        ARRAY_DATA = req.params.id
         
-        if(ARRAY_DATA!==null)
-        {
-            var client = new Client({
-                connectionString: conString,
-            })
-            try{
-                await client.connect()
-                console.log("Connected successfully.")
-            
-                var str = 'SELECT base64image from persondata where personid=$1'
-                var values = [ ARRAY_DATA ]
-                var rows1 = await client.query(str,values)
-                if(rows1.rows[0].base64image){
-                    res.send(rows1.rows[0].base64image)
-                }
-                    
-            }
-            catch(ex)
-            {
-                console.log(`Something wrong happened ${ex}`)
-            }
+        var client = new Client({
+            connectionString: conString,
+        })
+        try{
+            await client.connect()
+            console.log("Connected successfully.")
+        
+            var str = 'SELECT description from persondata'
+            var rows = await client.query(str)
+            console.log("Rows are.....",rows.rows)
+            res.json(rows.rows)  
         }
-        else
+        catch(ex)
         {
-            console.log("No Face was Detected")
+            console.log(`Something wrong happened ${ex}`)
         }
     }
     catch(ex)
@@ -153,7 +141,7 @@ app.post('/api/savePerson', async (req , res)=>{
     try{
         // console.log(req.body.data[0])
         ARRAY_DATA = req.body
-        console.log(ARRAY_DATA)
+        console.log("Array data is.....",ARRAY_DATA)
         if(ARRAY_DATA!==null)
         {
             var client = new Client({
@@ -163,10 +151,13 @@ app.post('/api/savePerson', async (req , res)=>{
                 await client.connect()
                 console.log("Connected successfully.")
             
-                var str = 'INSERT INTO persondata (personid,base64image) VALUES ($1,$2)'
-                var values = [ ARRAY_DATA.personid,ARRAY_DATA.image ]
+                var str = 'INSERT INTO persondata (id,description) VALUES ($1,$2)'
+                //put id
+                var personid = 1
+                var values = [personid, ARRAY_DATA ]
                 var rows = await client.query(str,values)
                 console.log(rows.rowCount+" row inserted into the table persondata...........")
+                
             }
             catch(ex)
             {

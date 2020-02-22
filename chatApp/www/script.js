@@ -46,7 +46,7 @@ async function Setup() {
       //   return;
       const prediction = await TFModelPredict(TFModel, faceouts[0], poses[0])
       console.log("Predicted", prediction)
-      argmax = prediction.indexOf(Math.max(...prediction))
+      argmax = prediction.indexOf(Math.max(prediction)) + 1
       console.log("argmax....",argmax)
       await fetch("/api/sendData",
         {

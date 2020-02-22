@@ -198,9 +198,3 @@ function display_quiz(){
     });
   
 }
-
-
-
-
-
-

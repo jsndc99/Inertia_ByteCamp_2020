@@ -61,27 +61,22 @@
     base64 = await faceapi.fetchImage(base64);
 
     let userFaceDescription = await DetectSingleFaceDescriptionWithLandmarksAndDescriptionWithoutExpression(base64)
-    userFaceDescription = userFaceDescription.detection
-    userFaceDescription = userFaceDescription.box
-    console.log(userFaceDescription)
+    console.log("User Description............",userFaceDescription)
+
     let ctx = canvas.getContext('2d');
     // ctx.beginPath();
     // ctx.rect(userFaceDescription.topLeft.x, userFaceDescription.topLeft.y, userFaceDescription.width, userFaceDescription.height);
     // ctx.stroke();
-    canvas.width = userFaceDescription.width;
-    canvas.height = userFaceDescription.height;
-    ctx.fillStyle = "#AAA";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(photo, userFaceDescription.topLeft.x, userFaceDescription.topLeft.y, userFaceDescription.width, userFaceDescription.height, 0, 0, userFaceDescription.width, userFaceDescription.height);
-    base64 = canvas.toDataURL('image/png');
+    // canvas.width = userFaceDescription.width;
+    // canvas.height = userFaceDescription.height;
+    // ctx.fillStyle = "#AAA";
+    // ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // ctx.drawImage(photo, userFaceDescription.topLeft.x, userFaceDescription.topLeft.y, userFaceDescription.width, userFaceDescription.height, 0, 0, userFaceDescription.width, userFaceDescription.height);
+    // base64 = canvas.toDataURL('image/png');
 
     photo.hidden = true;
-
-    image_data = {
-      data: userFaceDescription
-    }
-
-
+    id = fetchId(userFaceDescription)
+    
     await fetch("/api/savePerson",
     {
       headers: {
@@ -89,7 +84,7 @@
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify(image_data)
+      body: JSON.stringify(userFaceDescription)
     });
 
   }

@@ -14,16 +14,14 @@ function DetectSingleFaceDescriptionWithLandmarksAndDescription(img) {
   return faceapi.detectSingleFace(img, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions();
 }
 function DetectSingleFaceDescriptionWithLandmarksAndDescriptionWithoutExpression(img) {
-  const description = faceapi.detectSingleFace(img, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceDescriptor();
-  const labelDescriptors = [
-    new faceapi.LabeledFaceDescriptors(
-      1,
-      [description]
-    )
-  ]
+  console.log("Wait...........")
+  return faceapi.detectSingleFace(img, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceDescriptor();
+
 }
+
 async function DetectAllFaces(input, timestamp) {
   const detections = await DetectSingleFaceDescriptionWithLandmarksAndDescription(input);
+  console.log(detections)
   let OUTPUT = []
   // let numPersons = detections.length
   // for (let i = 0; i < numPersons; i++) {
@@ -34,7 +32,7 @@ async function DetectAllFaces(input, timestamp) {
         ...detections.expressions,
         timestamp: timestamp,
         // numPerson: numPersons,
-        personId: ,
+        personId: 1,
         headPose: HeadGazeDetect(detections)
       }
       OUTPUT.push(item)
@@ -44,20 +42,22 @@ async function DetectAllFaces(input, timestamp) {
   return OUTPUT
 }
 
-// async function FaceRecognitionGetMatcherFromImage(userFace, max_face_distance_euclidean = 0.6) {
-//   const userFaceDescription = await DetectSingleFaceDescriptionWithLandmarksAndDescription(userFace)
-//   return FaceRecognitionWithDescription(userFaceDescription, max_face_distance_euclidean);
-// }
-async function FaceRecognitionGetMatcherFromDescription(labelDescription, max_face_distance_euclidean = 0.6) {
-  const userFaceMatcher = await new faceapi.FaceMatcher(labelDescription, max_face_distance_euclidean);
-  console.log("prici;;;",userFaceMatcher)
-  return userFaceMatcher;
+
+async function FaceRecognitionGetMatcherFromDescription(existing, input,  max_face_distance_euclidean = 0.6) {
+  const userFaceMatcher = await new faceapi.FaceMatcher(existing, max_face_distance_euclidean);
+  const bestMatch = userFaceMatcher.findBestMatch(input)
+  console.log("best match is.....",bestMatch.toString())
+  return bestMatch
+
 }
 
-async function FaceRecognition(input, userFaceMatcher) {
-  const inputFaceDescriptions = await DetectSingleFaceDescriptionWithLandmarksAndDescriptionWithoutExpression(input)
-  for (const fd of inputFaceDescriptions) {
-    const bestMatch = userFaceMatcher.findBestMatch(fd.descriptor)
-    console.log(bestMatch.toString())
-  }
+async function fetchId(userFaceDescription){
+  res = await fetch("/api/getDescriptor");
+  res.json().then(data=>{
+    console.log("Data is.........................", data)
+    FaceRecognitionGetMatcherFromDescription(data, userFaceDescription.descriptor)
+        
+      })
+
+
 }
