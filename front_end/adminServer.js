@@ -29,7 +29,7 @@ app.get("/getidcount", async (req, res) => {
         await client.connect()
         console.log("Connected successfully.")
 
-        var str = 'SELECT COUNT (DISTINCT id) FROM persons;'
+        var str = 'SELECT COUNT (DISTINCT name) FROM persons;'
         var rows = await client.query(str)
         console.log(rows.rows[0].count)
         var thecount = rows.rows[0].count
@@ -48,7 +48,7 @@ app.get("/getidcount", async (req, res) => {
     }
 });
 
-app.get("/getDashboardData/:id", async (req, res) => {
+app.get("/getDashboardData/<name>", async (req, res) => {
     // console.log(xlData[0]);
     var anger_list = []; 
     var happy_list = [];
@@ -65,8 +65,8 @@ app.get("/getDashboardData/:id", async (req, res) => {
         await client.connect()
         console.log("Connected successfully.")
 
-        var str = 'SELECT happy,disgusted,angry,sleep,output1,timestamp from maindata where personid = $1 limit 10'
-        var values = [req.params.id ]
+        var str = 'SELECT happy,disgusted,angry,sleep,output1,timestamp from maindata where name = $1 limit 10'
+        var values = [req.params.name]
         var rows = await client.query(str,values)
         // console.log(rows.rows)
         maindata = rows.rows

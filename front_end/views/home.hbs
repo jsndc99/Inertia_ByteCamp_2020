@@ -1009,7 +1009,7 @@ async function getJson(id){
 }
 
 
-getJson('0').then( data =>{
+getJson('Elvis').then( data =>{
     time_list = data.time
     output_list = data.output
     var Chart2 = document.getElementById('myChart').getContext('2d');
@@ -1040,7 +1040,7 @@ getJson('0').then( data =>{
 
 
 setInterval(()=>{
-  getJson('0').then( data =>{
+  getJson('Elvis').then( data =>{
     time_list = data.time
     output_list = data.output
     
@@ -1072,7 +1072,7 @@ setInterval(()=>{
 },5000)
 
 
-getJson('1').then( data =>{
+getJson('Princeton').then( data =>{
     time_list = data.time
     output_list = data.output
     var Chart2 = document.getElementById('myChart2').getContext('2d');
@@ -1103,7 +1103,7 @@ getJson('1').then( data =>{
 
 
 setInterval(()=>{
-  getJson('1').then( data =>{
+  getJson('Princeton').then( data =>{
     time_list = data.time
     output_list = data.output
     
