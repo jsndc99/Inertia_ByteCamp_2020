@@ -7,14 +7,14 @@ Repository for ByteCamp 2020 by Team Inertia
 
 # Table of Contents
 
-* Description
-* Dependencies
-* Dependencies and Requirements
-* Installation Instructions
-* Usage Instructions
-* References/Citations/Credits
-* Contributors
-* Licence
+* [Description]()
+* [Dependencies]()
+* [Requirements]()
+* [Installation]()
+* [Usage]()
+* [References]()
+* [Contributors]()
+* [Licence]()
 
 # Description
 
@@ -35,10 +35,10 @@ Our main aim while developing the project was to ensure **user privacy was not c
 # References/Citations/Credits
 # Contributors
 
-Jason D'Costa (@jsndc99)
+Jason D'Costa [@jsndc99](https://github.com/jsndc99)
 
-Elvis Dsouza (@ejson03)
+Elvis Dsouza [@ejson03](https://github.com/ejson03)
 
-Princeton Baretto (@princebaretto99)
+Princeton Baretto [@princebaretto99](https://github.com/princebaretto99)
 
 # Licence
