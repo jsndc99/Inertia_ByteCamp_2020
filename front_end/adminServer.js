@@ -107,3 +107,9 @@ var port = process.env.PORT || 15000;
 app.listen(port, function() {
   console.log("App running on port " + port);
 });
+
+
+
+//a=[1,2,3]
+//var max = Math.max.apply(null, a);
+//a.indexOf(max)
