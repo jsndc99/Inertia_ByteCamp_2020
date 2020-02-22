@@ -19,13 +19,16 @@ async function TFModelSetup(MODEL_HTTP_URL, MODEL_INDEXEDDB_URL) {
 
 async function TFModelPredict(model, emo, pose) {
     if(emo == null || pose == null)
-        return [0,0,0]
-    const items = [emo.happy, emo.angry, emo.disgusted, pose.raisHand, pose.sleeping, emo.headPose]
+        return 1
+    const items = [emo.happy, emo.angry, emo.disgusted, emo.neutral, emo.sad,pose.raisHand, pose.sleeping, emo.headPose]
+    console.log(items)
     const input = tf.tensor2d([items])
+    console.log(input.shape)
     let result = await model.predict(input)
     result = await result.data()
     result = Array.from(result)
-    result = {output1: result[0],output2: result[1], output3: result[2]}
+    max = Math.max.apply(null, result)
+    result = result.indexOf(max) + 1
     return result
 }
 

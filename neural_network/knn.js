@@ -16,7 +16,7 @@ let seperationSize; // To seperate training and test data
 let  X = [], y = [];
 
 let trainingSetX = [], trainingSetY = [], testSetX = [], testSetY = [];
-seperationSize = 0.8 * data.length;
+seperationSize = 0.99 * data.length;
 // data = shuffleArray(data);
 
 // function shuffleArray(array) {
@@ -32,8 +32,8 @@ function dressData() {
 
     data.forEach((row) => {
         let rowArray, typeNumber;
-        rowArray = Object.keys(row).map(key => parseFloat(row[key])).slice(0, 6);
-        typeNumber = Object.keys(row).map(key => parseFloat(row[key])).slice(6);
+        rowArray = Object.keys(row).map(key => parseFloat(row[key])).slice(0, 8);
+        typeNumber = Object.keys(row).map(key => parseFloat(row[key])).slice(8);
         X.push(rowArray);
         y.push(typeNumber[0])
         
@@ -59,7 +59,7 @@ function createModel() {
     const dropoutRate = 0.25
     
     
-    model.add(tf.layers.dense({inputShape: [6], activation:'relu', useBias: true, units:50}));
+    model.add(tf.layers.dense({inputShape: [8], activation:'relu', useBias: true, units:50}));
     model.add(tf.layers.dense({units: 200, regulizer, activation:'relu', useBias: true})); 
     model.add(tf.layers.dropout({rate: dropoutRate}));
     model.add(tf.layers.dense({units: 200, activation:'relu', useBias: true}));   
@@ -80,7 +80,7 @@ async function trainModel(inputs, labels) {
     model.summary()
     
     const batchSize = 24;
-    const epochs = 25;
+    const epochs = 10;
     
     await model.fit(inputs, labels, {
       batchSize,

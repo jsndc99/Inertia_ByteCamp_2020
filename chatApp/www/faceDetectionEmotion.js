@@ -23,16 +23,12 @@ async function DetectAllFaces(input, timestamp) {
   const detections = await DetectSingleFaceDescriptionWithLandmarksAndDescription(input);
   console.log(detections)
   let OUTPUT = []
-  // let numPersons = detections.length
-  // for (let i = 0; i < numPersons; i++) {
     if (!isNaN(detections.alignedRect._box.x)) {
       const item = {
-        // ...detections[i].alignedRect._box,
-        // ...detections[i].alignedRect._box,
+
         ...detections.expressions,
         timestamp: timestamp,
-        // numPerson: numPersons,
-        personId: 1,
+        name: 'Elvis',
         headPose: HeadGazeDetect(detections)
       }
       OUTPUT.push(item)
@@ -43,9 +39,10 @@ async function DetectAllFaces(input, timestamp) {
 }
 
 
-async function FaceRecognitionGetMatcherFromDescription(existing, input,  max_face_distance_euclidean = 0.0) {
+async function FaceRecognitionGetMatcherFromDescription(existing, input,  max_face_distance_euclidean = 1.0) {
   const userFaceMatcher = await new faceapi.FaceMatcher(existing, max_face_distance_euclidean)
   const bestMatch = userFaceMatcher.findBestMatch(input)
+  window.location.href = "localhost:3000/course.html"
   console.log("best match is.....", bestMatch.toString())
   return bestMatch
 
