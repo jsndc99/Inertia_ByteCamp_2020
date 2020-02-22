@@ -7,14 +7,15 @@ Repository for ByteCamp 2020 by Team Inertia
 
 # Table of Contents
 
-* [Description]()
-* [Dependencies]()
-* [Requirements]()
-* [Installation]()
-* [Usage]()
-* [References]()
-* [Contributors]()
-* [License]()
+* [Description](https://github.com/jsndc99/Inertia_ByteCamp_2020#description)
+* [Dependencies](https://github.com/jsndc99/Inertia_ByteCamp_2020#dependencies)
+* [Installation](https://github.com/jsndc99/Inertia_ByteCamp_2020#installation)
+  * [Prerequisites](https://github.com/jsndc99/Inertia_ByteCamp_2020#prerequisites)
+  * [Instructions](https://github.com/jsndc99/Inertia_ByteCamp_2020#instructions)
+* [Usage](https://github.com/jsndc99/Inertia_ByteCamp_2020#usage)
+* [References](https://github.com/jsndc99/Inertia_ByteCamp_2020#references)
+* [Contributors](https://github.com/jsndc99/Inertia_ByteCamp_2020#contributors)
+* [License](https://github.com/jsndc99/Inertia_ByteCamp_2020#license)
 
 # Description
 
@@ -25,7 +26,7 @@ Our main aim while developing the project was to ensure **user privacy was not c
 * The sign up and login processes do not use the user's face. Instead only the face features are used, which ensures privacy is protected.
 * The database doesn't store any personal information of the users.
 
-# Dependencies and Requirements
+# Dependencies
 
 * [Node.js](https://nodejs.org/en/)
 * [NPM](https://www.npmjs.com/)
@@ -77,4 +78,4 @@ Princeton Baretto [@princebaretto99](https://github.com/princebaretto99)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[MIT License Link]()
+[MIT License Link](https://github.com/jsndc99/Inertia_ByteCamp_2020/blob/master/LICENSE)
