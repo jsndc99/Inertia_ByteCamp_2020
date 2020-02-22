@@ -43,21 +43,26 @@ async function DetectAllFaces(input, timestamp) {
 }
 
 
-async function FaceRecognitionGetMatcherFromDescription(existing, input,  max_face_distance_euclidean = 0.6) {
-  const userFaceMatcher = await new faceapi.FaceMatcher(existing, max_face_distance_euclidean);
+async function FaceRecognitionGetMatcherFromDescription(existing, input,  max_face_distance_euclidean = 0.0) {
+  const userFaceMatcher = await new faceapi.FaceMatcher(existing, max_face_distance_euclidean)
   const bestMatch = userFaceMatcher.findBestMatch(input)
-  console.log("best match is.....",bestMatch.toString())
+  console.log("best match is.....", bestMatch.toString())
   return bestMatch
 
 }
 
 async function fetchId(userFaceDescription){
+  var labels = []
   res = await fetch("/api/getDescriptor");
   res.json().then(data=>{
-    console.log("Data is.........................", data)
-    FaceRecognitionGetMatcherFromDescription(data, userFaceDescription.descriptor)
-        
-      })
-
-
+    data.forEach(rows =>{
+    labels.push(new faceapi.LabeledFaceDescriptors(rows.name, [
+      new Float32Array(rows.description.descriptor)
+    ]))
+    
+  })
+  
+  console.log(labels)
+  FaceRecognitionGetMatcherFromDescription(labels, userFaceDescription.descriptor)
+  })
 }

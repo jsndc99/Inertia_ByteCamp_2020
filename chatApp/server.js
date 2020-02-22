@@ -121,7 +121,7 @@ app.get('/api/getDescriptor', async (req , res)=>{
             await client.connect()
             console.log("Connected successfully.")
         
-            var str = 'SELECT description from persondata'
+            var str = 'SELECT * from persons'
             var rows = await client.query(str)
             console.log("Rows are.....",rows.rows)
             res.json(rows.rows)  
@@ -151,10 +151,8 @@ app.post('/api/savePerson', async (req , res)=>{
                 await client.connect()
                 console.log("Connected successfully.")
             
-                var str = 'INSERT INTO persondata (id,description) VALUES ($1,$2)'
-                //put id
-                var personid = 1
-                var values = [personid, ARRAY_DATA ]
+                var str = 'INSERT INTO persons (name,description) VALUES ($1,$2)'
+                var values = [ARRAY_DATA.name, ARRAY_DATA.description ]
                 var rows = await client.query(str,values)
                 console.log(rows.rowCount+" row inserted into the table persondata...........")
                 

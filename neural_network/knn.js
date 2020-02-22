@@ -61,7 +61,7 @@ function createModel() {
     
     model.add(tf.layers.dense({inputShape: [6], activation:'relu', useBias: true, units:50}));
     model.add(tf.layers.dense({units: 200, regulizer, activation:'relu', useBias: true})); 
-    //model.add(tf.layers.dropout({rate: dropoutRate}));
+    model.add(tf.layers.dropout({rate: dropoutRate}));
     model.add(tf.layers.dense({units: 200, activation:'relu', useBias: true}));   
     model.add(tf.layers.dense({units: 200, activation:'relu', useBias: true})); 
     model.add(tf.layers.dense({units: 3, activation:'softmax'}));
@@ -80,7 +80,7 @@ async function trainModel(inputs, labels) {
     model.summary()
     
     const batchSize = 24;
-    const epochs = 20;
+    const epochs = 10;
     
     await model.fit(inputs, labels, {
       batchSize,

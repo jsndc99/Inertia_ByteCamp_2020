@@ -53,6 +53,7 @@
 
   async function takepicture() {
     photo.hidden = false;
+    let name = document.getElementById("name").value;
     let context = canvas.getContext('2d');
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
@@ -73,10 +74,14 @@
     // ctx.fillRect(0, 0, canvas.width, canvas.height);
     // ctx.drawImage(photo, userFaceDescription.topLeft.x, userFaceDescription.topLeft.y, userFaceDescription.width, userFaceDescription.height, 0, 0, userFaceDescription.width, userFaceDescription.height);
     // base64 = canvas.toDataURL('image/png');
+    image_data = {
+      name: name,
+      description: userFaceDescription
+    }
 
     photo.hidden = true;
-    id = fetchId(userFaceDescription)
-    
+  
+    id = fetchId(userFaceDescription);
     await fetch("/api/savePerson",
     {
       headers: {
@@ -84,7 +89,7 @@
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify(userFaceDescription)
+      body: JSON.stringify(image_data)
     });
 
   }
