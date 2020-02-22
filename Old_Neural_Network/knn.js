@@ -1,5 +1,5 @@
 global.fetch = require("node-fetch");
-const tf = require('@tensorflow/tfjs-node-gpu')
+const tf = require('@tensorflow/tfjs-node')
 //const tfvis = require('@tensorflow/tfjs-vis')
 const csvFilePath = 'data.csv';
 var fs = require('fs');
@@ -92,5 +92,3 @@ async function trainModel(inputs, labels) {
 }
 
 trainModel( trainingSetX, trainingSetY);
-
-
