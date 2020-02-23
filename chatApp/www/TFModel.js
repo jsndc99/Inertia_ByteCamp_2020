@@ -23,7 +23,6 @@ async function TFModelPredict(model, emo, pose) {
     const items = [emo.happy, emo.angry, emo.disgusted, emo.neutral, emo.sad,pose.raisHand, pose.sleeping, emo.headPose]
     console.log(items)
     const input = tf.tensor2d([items])
-    console.log(input.shape)
     let result = await model.predict(input)
     result = await result.data()
     result = Array.from(result)

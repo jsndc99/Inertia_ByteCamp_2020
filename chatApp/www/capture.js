@@ -80,8 +80,9 @@
     }
 
     photo.hidden = true;
+
+    window.location.href = "http://localhost:3000/course.html"
   
-    id = fetchId(userFaceDescription);
     await fetch("/api/savePerson",
     {
       headers: {
@@ -93,6 +94,7 @@
     });
 
   }
+  
 
   // Set up our event listener to run the startup process
   // once loading is complete.

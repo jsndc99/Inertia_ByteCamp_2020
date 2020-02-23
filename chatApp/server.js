@@ -30,7 +30,7 @@ app.get('/api', (req , res)=>{
 app.post('/api/sendData', async (req , res)=>{
     try{
         ARRAY_DATA = req.body
-        
+        console.log(ARRAY_DATA)
         if(ARRAY_DATA!==null)
         {
             var client = new Client({
@@ -43,7 +43,7 @@ app.post('/api/sendData', async (req , res)=>{
                 var str = 'INSERT INTO maindata (name,timestamp,output) VALUES ($1,$2,$3)'
                 var values = [ ARRAY_DATA.name,
                                 ARRAY_DATA.timestamp,
-                                ARRAY_DATA.output ]
+                                ARRAY_DATA.prediction ]
                 var rows = await client.query(str,values)
                 console.log(rows.rowCount+" row inserted into the table maindata...........")
             }
@@ -76,7 +76,7 @@ app.post('/api/getData/:id', async (req , res)=>{
                 await client.connect()
                 console.log("Connected successfully.")
             
-                var str = 'INSERT INTO maindata (happy,disgusted,angry,timestamp,personid,handraised,sleep,headgaze,output) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)'
+                var str = 'INSERT INTO maindata (happy,disgusted,angry,timestamp,name,handraised,sleep,headgaze,output) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)'
                 var values = [ ARRAY_DATA.happy,ARRAY_DATA.disgusted,
                                 ARRAY_DATA.angry,ARRAY_DATA.timestamp,
                                 ARRAY_DATA.personId,ARRAY_DATA.raisHand,

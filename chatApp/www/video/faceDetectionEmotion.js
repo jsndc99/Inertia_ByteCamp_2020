@@ -23,41 +23,43 @@ async function DetectAllFaces(input, timestamp) {
   const detections = await DetectSingleFaceDescriptionWithLandmarksAndDescription(input);
   console.log(detections)
   let OUTPUT = []
-  let zero = {neutral: 0,
-  happy: 0,
-  sad: 0,
-  angry: 0,
-  fearful:0,
-  disgusted: 0,
-  surprised: 0}
-    if(detections)
-    {
-      if (!isNaN(detections.alignedRect._box.x)) {
-        const item = {
-          ...detections.expressions,
-          timestamp: timestamp,
-          name: 'Princeton',
-          headPose: HeadGazeDetect(detections)
-        }
-        OUTPUT.push(item)
-      }
-      
-    }
-    else{
+    if (!isNaN(detections.alignedRect._box.x)) {
       const item = {
-        ...zero,
+
+        ...detections.expressions,
         timestamp: timestamp,
-        name : 'Princeton',
+        name: 'Elvis',
         headPose: HeadGazeDetect(detections)
       }
       OUTPUT.push(item)
     }
-    
+
+
   return OUTPUT
 }
 
 
+// async function FaceRecognitionGetMatcherFromDescription(existing, input,  max_face_distance_euclidean = 1.0) {
+//   const userFaceMatcher = await new faceapi.FaceMatcher(existing, max_face_distance_euclidean)
+//   const bestMatch = userFaceMatcher.findBestMatch(input)
+//   window.location.href = "localhost:3000/course.html"
+//   console.log("best match is.....", bestMatch.toString())
+//   return bestMatch
 
+// }
 
-
-
+// async function fetchId(userFaceDescription){
+//   var labels = []
+//   res = await fetch("/api/getDescriptor");
+//   res.json().then(data=>{
+//     data.forEach(rows =>{
+//     labels.push(new faceapi.LabeledFaceDescriptors(rows.name, [
+//       new Float32Array(rows.description.descriptor)
+//     ]))
+    
+//   })
+  
+//   console.log(labels)
+//   FaceRecognitionGetMatcherFromDescription(labels, userFaceDescription.descriptor)
+//   })
+// }

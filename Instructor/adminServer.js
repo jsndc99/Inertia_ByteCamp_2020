@@ -2,7 +2,7 @@ var express = require("express");
 const { Client } = require('pg');
 var bodyParser = require("body-parser");
 const cors = require('cors')
-const conString = 'postgres://postgres:Prince@99@localhost/teach.ai'
+const conString ='postgres://postgres:postgres@localhost:5432/teach.ai'
 
 var app = express();
 
@@ -48,12 +48,7 @@ app.get("/getidcount", async (req, res) => {
     }
 });
 
-app.get("/getDashboardData/<name>", async (req, res) => {
-    // console.log(xlData[0]);
-    var anger_list = []; 
-    var happy_list = [];
-    var disgusted_list = [];
-    var sleeping_list = [];
+app.get("/getDashboardData/:name", async (req, res) => {
     var output_list = [];
     var time_list = [];
 
@@ -65,28 +60,21 @@ app.get("/getDashboardData/<name>", async (req, res) => {
         await client.connect()
         console.log("Connected successfully.")
 
-        var str = 'SELECT happy,disgusted,angry,sleep,output1,timestamp from maindata where name = $1 limit 10'
+        var str = 'SELECT output,timestamp from maindata where name = $1 limit 10'
         var values = [req.params.name]
         var rows = await client.query(str,values)
         // console.log(rows.rows)
         maindata = rows.rows
         maindata.forEach(data => {
-            happy_list.push(data.happy);
-            disgusted_list.push(data.disgusted);
-            anger_list.push(data.angry);
-            sleeping_list.push(data.sleep);
-            output_list.push(data.output1);
+            output_list.push(data.output);
             time_list.push(data.timestamp);
         });
 
         my_json = {
-            happy: happy_list,
-            disgusted: disgusted_list,
-            angry: anger_list,
-            sleep: sleeping_list,
             output: output_list,
             time: time_list
         };
+        console.log(my_json)
         res.json(my_json);
         
     }
