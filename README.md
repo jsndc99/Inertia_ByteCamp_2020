@@ -80,6 +80,13 @@ Open a web browser and go to
 http://localhost:3000
 ```
 
+### Login Screen
+![Image of Login](src/login.png)
+
+### Video View Screen
+![Image of Video](src/video.png)
+
+
 # Contributors
 
 * Jason D'Costa [@jsndc99](https://github.com/jsndc99)
