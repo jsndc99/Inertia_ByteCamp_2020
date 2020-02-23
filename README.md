@@ -86,6 +86,9 @@ http://localhost:3000
 ### Video View Screen
 ![Image of Video](src/video.png)
 
+### Lecturer Dashboard
+![Image of Dashboard](src/dashboard.png)
+
 
 # Contributors
 
