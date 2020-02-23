@@ -2,30 +2,55 @@
 <html>
 
 <head>
-    <title>WebRTC: Still photo capture demo</title>
+    <title>Login - Attention Detection</title>
     <meta charset='utf-8'>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="main.css" type="text/css" media="all">
     <script defer type="text/javascript" src="utils.js"></script>
     <script defer type="text/javascript" src="capture.js"></script>
     <script defer type="text/javascript" src="faceDetectionEmotion.js"></script>
-    
-    <script defer type="text/javascript" src="face-api.min.js"></script>   
+    <script defer type="text/javascript" src="face-api.min.js"></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
 </head>
 
 <body>
-    <div class="contentarea">
+    <div class="form-signin text-center">
 
-        <div class="camera">
-            <input type="text" id="name" name="name"><br>
-            <video id="video">Video stream not available.</video>
-            <button id="startbutton">Take photo</button>
+        <img class="container-fluid" src="assets/img/logo-via-logohub.png" alt="" height="auto"
+            style="margin: 2%; width: 65%;">
+        <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">Login for Attention Detection Portal</h1>
         </div>
-        <canvas id="canvas">
-        </canvas>
-        <div class="output">
-            <img id="photo" alt="The screen capture will appear in this box.">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-8" style="margin-right: 1%;">
+                    <div class="form-label-group text-center" style="margin: 2%; width: 30%;">
+                        <input type="text" id="name" class="form-control text-center" placeholder="Enter Name" required=""
+                            autofocus="" style="margin-left: 20%;">
+                    </div>
+                    <div class="camera text-center">
+                        <video id="video">Video stream not available.</video>
+                    </div>
+                    <div class="text-center ">
+                        <button id="startbutton" class="btn btn-primary" type="button"
+                            style="margin-bottom: 2%; margin-top: 1%;">Take photo</button>
+                    </div>
+                </div>
+                <div class="col-xs-8" style="margin-left: 1%; margin-top: 5.5%;">
+                    <div class="output" style="height: 360px; width: 240px; color: white;">
+                        <img id="photo" alt="The screen capture will appear in this box.">
+                    </div>
+                    <canvas id="canvas" style="opacity: 0;">
+                    </canvas> 
+                </div>
+            </div>
         </div>
-    </div>
 </body>
-
 </html>
