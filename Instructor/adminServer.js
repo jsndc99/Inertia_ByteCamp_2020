@@ -29,7 +29,7 @@ app.get("/getidcount", async (req, res) => {
         await client.connect()
         console.log("Connected successfully.")
 
-        var str = 'SELECT COUNT (DISTINCT name) FROM persons;'
+        var str = 'SELECT COUNT (DISTINCT name) FROM maindata;'
         var rows = await client.query(str)
         console.log(rows.rows[0].count)
         var thecount = rows.rows[0].count
@@ -60,7 +60,7 @@ app.get("/getDashboardData/:name", async (req, res) => {
         await client.connect()
         console.log("Connected successfully.")
 
-        var str = 'SELECT output,timestamp from maindata where name = $1 limit 10'
+        var str = 'SELECT output,timestamp from maindata where name = $1 ORDER BY timestamp DESC limit 10'
         var values = [req.params.name]
         var rows = await client.query(str,values)
         // console.log(rows.rows)

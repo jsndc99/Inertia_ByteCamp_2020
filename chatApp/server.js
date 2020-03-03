@@ -171,9 +171,9 @@ app.post('/api/savePerson', async (req , res)=>{
     }
 })
 
-//server.listen(3000);//for local test
-server.listen(process.env.PORT || 3000, ()=> console.log("Node Server Running on port 3000"));//publish to heroku
-//server.listen(process.env.OPENSHIFT_NODEJS_PORT || 3000);//publish to openshift
+//server.listen(9999);//for local test
+server.listen(process.env.PORT || 9999, ()=> console.log("Node Server Running on port 9999"));//publish to heroku
+//server.listen(process.env.OPENSHIFT_NODEJS_PORT || 9999);//publish to openshift
 //handle the socket
 
 io.sockets.on('connection', function(socket) {

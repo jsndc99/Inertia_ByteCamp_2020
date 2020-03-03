@@ -81,7 +81,7 @@
 
     photo.hidden = true;
 
-    window.location.href = "http://localhost:3000/course.html"
+    window.location.href = "http://localhost:9999/course.html"
   
     await fetch("/api/savePerson",
     {

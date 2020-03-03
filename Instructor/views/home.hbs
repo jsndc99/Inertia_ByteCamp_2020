@@ -1004,7 +1004,7 @@ async function getJson(id){
     console.log(url)
     var response = await fetch(url);
     var jsondata = await response.json();
-
+    console.log(jsondata)
     return jsondata
 }
 
